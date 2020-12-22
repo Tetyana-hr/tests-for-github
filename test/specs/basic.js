@@ -1,5 +1,6 @@
 const { assert } = require('console');
 const registration = require('../pageObjects/registration.js');
+const authorization = require('../pageObjects/authorization.js');
 
 describe('Github registration', () => {
     beforeEach(function () {
@@ -7,7 +8,7 @@ describe('Github registration', () => {
         browser.maximizeWindow();
     });
 
-    it('should open registration page, verify url, visibling some text and user registration', () => {
+    xit('should open registration page, verify url, visibling some text and user registration', () => {
         registration.naviganeToRegPage();
         const urlRegPage = browser.getUrl();
         expect(browser).toHaveUrl('https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home')
@@ -24,7 +25,7 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
 
-    it('should sig up with main form', () => {
+    xit('should sing up with main form', () => {
         registration.getEmailMain();
         browser.pause(1000);
         registration.naviganeToRegPageMain();
@@ -40,6 +41,14 @@ describe('Github registration', () => {
         browser.pause(1000);
         registration.passwordInput.setValue('Nz111111');
         browser.pause(1000);
+    })
+
+    it('should authorization with right credential', () => {
+        authorization.naviganeToLoginPage();
+        browser.pause(1000);
+        authorization.login();
+        browser.pause(1000);
+        authorization.naviganeToProfile();
     })
 
 })

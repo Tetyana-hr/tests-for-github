@@ -44,4 +44,4 @@ class Registration{
       } 
 
 }
-module.exports = new Registration()
+module.exports = new Registration();

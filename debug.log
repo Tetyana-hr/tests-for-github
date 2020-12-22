@@ -1,0 +1,4 @@
+[1222/160324.965:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1222/160324.980:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1222/160324.982:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
+[1222/160324.982:ERROR:exception_snapshot_win.cc(99)] thread ID 13492 not found in process
