@@ -19,14 +19,14 @@ describe('Github registration', () => {
         browser.pause(1000);
         registration.inputRegSet();
         browser.pause(1000);
-        registration.getEmail();
+        registration.setEmail();
         browser.pause(1000);
         registration.passwordInput.setValue('Nz111111');
         browser.pause(1000);
     })
 
     xit('should sing up with main form', () => {
-        registration.getEmailMain();
+        registration.setEmailMain();
         browser.pause(1000);
         registration.naviganeToRegPageMain();
         const urlRegPageMain = browser.getUrl();
@@ -43,12 +43,16 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
 
-    it('should authorization with right credential', () => {
+    xit('should authorization with right credential', () => {
         authorization.naviganeToLoginPage();
         browser.pause(1000);
         authorization.login();
         browser.pause(1000);
         authorization.naviganeToProfile();
+    })
+
+    xit('negative test for reset your password', () => {
+
     })
 
 })

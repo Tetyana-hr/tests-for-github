@@ -23,20 +23,18 @@ class Registration{
         function rand(min, max) {
           return (min + Math.random() * (max - min + 1)) | 0
          }
-        let randFullEmail = randNameEmail + "@" + endings[rand(0, endings.length - 1)];
-        this.emailInput.setValue(randFullEmail);
-        
+         return randNameEmail + "@" + endings[rand(0, endings.length - 1)];
+        // let randFullEmail = 
+        // this.emailInput.setValue(randFullEmail);    
 
       }
-      getEmailMain() {
-        let endings = ["ukr.net", "email.ua", "nv.ua", "meta.ua", "gmail.com"];
-        let randNameEmail = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-        function rand(min, max) {
-          return (min + Math.random() * (max - min + 1)) | 0
-         }
-        let randFullEmail = randNameEmail + "@" + endings[rand(0, endings.length - 1)];
-        this.emailInputMain.setValue(randFullEmail);
 
+      setEmail() {
+        this.emailInput.setValue(this.getEmail);  
+      }
+
+      setEmailMain() {
+        this.emailInputMain.setValue(this.getEmail);
       }
 
       naviganeToRegPageMain(){
