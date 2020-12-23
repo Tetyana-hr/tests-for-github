@@ -3,7 +3,7 @@ const registration = require('../pageObjects/registration.js');
 const authorization = require('../pageObjects/authorization.js');
 const forgotPassword = require('../pageObjects/forgotPassword.js');
 const homepage = require('../pageObjects/homepage.js');
-const joinForFree = require('../pageObjects/joinForFree.js');
+const topics = require('../pageObjects/topics.js');
 
 describe('Github registration', () => {
     beforeEach(function () {
@@ -106,11 +106,20 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
 
-    it('', () => {
+    xit('should open topics and finde label Topics', () => {
         browser.pause(1000);
         homepage.openMenuExplore();
         browser.pause(1000);
-       
-    })
+        topics.navigateToTopics();
+        const textTopic = topics.labelTopics.getText();
+        expect(topics.labelTopics).toHaveText('Topics');
+        console.log ('Page has label Topics : ' + textTopic);
+      })
 
+      //Не дописано
+      it('should search webdriverio information', () => {
+        browser.pause(1000);
+        homepage.searchKeyWord();
+        browser.pause(1000);
+      })
 })
