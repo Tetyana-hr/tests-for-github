@@ -1,6 +1,8 @@
 const { assert } = require('console');
 const registration = require('../pageObjects/registration.js');
 const authorization = require('../pageObjects/authorization.js');
+const forgotPassword = require('../pageObjects/forgotPassword.js');
+
 
 describe('Github registration', () => {
     beforeEach(function () {
@@ -51,8 +53,62 @@ describe('Github registration', () => {
         authorization.naviganeToProfile();
     })
 
-    xit('negative test for reset your password', () => {
-
+    xit('negative test with empty field for reset your password', () => {
+        authorization.naviganeToLoginPage();
+        forgotPassword.navigateToResetPassword();
+        forgotPassword.sendResetPassword();
+        browser.pause(1000);
+        forgotPassword.isVisibleWarning();
+        browser.pause(1000);
     })
+
+    xit('negative test with random text for reset your password', () => {
+        authorization.naviganeToLoginPage();
+        forgotPassword.navigateToResetPassword();
+        forgotPassword.inputResetWrong();
+        forgotPassword.sendResetPassword();
+        forgotPassword.isVisibleWarning();
+        browser.pause(1000);
+    })
+    
+    xit('positive test for reset your password', () => {
+        authorization.naviganeToLoginPage();
+        forgotPassword.navigateToResetPassword();
+        forgotPassword.setResetEmail();
+        forgotPassword.sendResetPassword();
+        browser.pause(1000);
+        forgotPassword.isVisibleMessageCheckEmail();
+        browser.pause(2000);
+    })
+
+    it('sould drop down menu is wisible after hovering', () => {
+        browser.pause(2000);
+        // let itemPricing = $('//summary[contains(text(),"Pricing")]');
+        browser.elementHover('//summary[contains(text(),"Pricing")]');   
+        browser.pause(5000);
+    })
+
+    // it('sould drop down menu is wisible after hovering', () => {
+    //     browser.pause(2000);
+    //     const itemPricing = $('//summary[contains(text(),"Pricing")]');
+    //     itemPricing.hover();
+    // //     let itemPricing = {
+    // //         locator: $('//summary[contains(text(),"Pricing")]'),
+            
+    // //         toString: function(){
+    // //         return this.locator;
+    // //         }
+    // //     };
+    // //     browser.elementHover(itemPricing);
+        
+    //     browser.pause(5000);
+    // })
+
+     // it('', () => {
+    //     browser.pause(2000);
+    //     const itemPricing = $('//summary[contains(text(),"Pricing")]');
+    //     itemPricing.elementHover();
+    //     browser.pause(2000);
+    // })
 
 })

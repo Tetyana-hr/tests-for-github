@@ -14,8 +14,7 @@ class Registration{
     inputRegSet(){
       let randText = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
       this.nameInput.setValue(randText)
-    }
-
+    } 
  
      getEmail() {
         let endings = ["ukr.net", "email.ua", "nv.ua", "meta.ua", "gmail.com"];
@@ -24,9 +23,6 @@ class Registration{
           return (min + Math.random() * (max - min + 1)) | 0
          }
          return randNameEmail + "@" + endings[rand(0, endings.length - 1)];
-        // let randFullEmail = 
-        // this.emailInput.setValue(randFullEmail);    
-
       }
 
       setEmail() {
