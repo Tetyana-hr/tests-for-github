@@ -2,7 +2,8 @@ const { assert } = require('console');
 const registration = require('../pageObjects/registration.js');
 const authorization = require('../pageObjects/authorization.js');
 const forgotPassword = require('../pageObjects/forgotPassword.js');
-
+const homepage = require('../pageObjects/homepage.js');
+const joinForFree = require('../pageObjects/joinForFree.js');
 
 describe('Github registration', () => {
     beforeEach(function () {
@@ -80,35 +81,36 @@ describe('Github registration', () => {
         forgotPassword.isVisibleMessageCheckEmail();
         browser.pause(2000);
     })
-
-    it('sould drop down menu is wisible after hovering', () => {
+// Пересмотреть
+    xit('should be visible drop down menu after hovering', () => {
         browser.pause(2000);
-        // let itemPricing = $('//summary[contains(text(),"Pricing")]');
-        browser.elementHover('//summary[contains(text(),"Pricing")]');   
-        browser.pause(5000);
+        homepage.openMenuWhy();
+        browser.pause(2000);
+        homepage.openMenuExplore();
+        browser.pause(2000);
+        homepage.openMenuPricing();
+        browser.pause(1000);
     })
 
-    // it('sould drop down menu is wisible after hovering', () => {
-    //     browser.pause(2000);
-    //     const itemPricing = $('//summary[contains(text(),"Pricing")]');
-    //     itemPricing.hover();
-    // //     let itemPricing = {
-    // //         locator: $('//summary[contains(text(),"Pricing")]'),
-            
-    // //         toString: function(){
-    // //         return this.locator;
-    // //         }
-    // //     };
-    // //     browser.elementHover(itemPricing);
-        
-    //     browser.pause(5000);
-    // })
+    xit('join for free', () => {
+        browser.pause(1000);
+        homepage.openMenuPricing();
+        browser.pause(1000);
+        registration.goToFreePlans();
+        browser.pause(1000);
+        registration.inputRegSet();
+        browser.pause(1000);
+        registration.setEmail();
+        browser.pause(1000);
+        registration.passwordInput.setValue('Nz111111');
+        browser.pause(1000);
+    })
 
-     // it('', () => {
-    //     browser.pause(2000);
-    //     const itemPricing = $('//summary[contains(text(),"Pricing")]');
-    //     itemPricing.elementHover();
-    //     browser.pause(2000);
-    // })
+    it('', () => {
+        browser.pause(1000);
+        homepage.openMenuExplore();
+        browser.pause(1000);
+       
+    })
 
 })

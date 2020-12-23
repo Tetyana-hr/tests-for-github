@@ -7,6 +7,10 @@ class Registration{
     get emailInputMain() {return $('#user_email');}
     get singUpMain() {return $('[class="btn-mktg-fluid btn-green-mktg-fluid width-full width-sm-auto"]');}
 
+    get itemPlans() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"] [href="/pricing"]');}
+    get freeButton() {return $('[href="/join?plan=free&ref_cta=Join%2520for%2520free&ref_loc=topcarousel&ref_page=%2Fpricing&source=pricing-card-free"]');}
+
+
     naviganeToRegPage(){
       this.singUp.click();
     }
@@ -36,6 +40,10 @@ class Registration{
       naviganeToRegPageMain(){
         this.singUpMain.click();
       } 
-
+      
+      goToFreePlans(){
+        this.itemPlans.click();
+        this.freeButton.click();
+    }
 }
 module.exports = new Registration();
