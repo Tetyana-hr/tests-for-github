@@ -11,7 +11,7 @@ describe('Github registration', () => {
         browser.maximizeWindow();
     });
 
-    xit('should open registration page, verify url, visibling some text and user registration', () => {
+    it('should open registration page, verify url, visibling some text and user registration', () => {
         registration.naviganeToRegPage();
         const urlRegPage = browser.getUrl();
         expect(browser).toHaveUrl('https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home')
@@ -20,7 +20,7 @@ describe('Github registration', () => {
         console.log("IS VISIBLE? " + verifyTextIsVisible);
 
         browser.pause(1000);
-        registration.inputRegSet();
+        registration.setRandText();
         browser.pause(1000);
         registration.setEmail();
         browser.pause(1000);
@@ -28,7 +28,7 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
 
-    xit('should sing up with main form', () => {
+    it('should sing up with main form', () => {
         registration.setEmailMain();
         browser.pause(1000);
         registration.naviganeToRegPageMain();
@@ -38,7 +38,7 @@ describe('Github registration', () => {
         let verifyTextIsVisibleMain = registration.verifyText.isDisplayedInViewport();
         console.log("IS VISIBLE (Main)? " + verifyTextIsVisibleMain);
 
-        registration.inputRegSet();
+        registration.setRandText();
         browser.pause(1000);
         registration.getEmail();
         browser.pause(1000);
@@ -50,11 +50,14 @@ describe('Github registration', () => {
         authorization.naviganeToLoginPage();
         browser.pause(1000);
         authorization.login();
-        browser.pause(1000);
+        browser.pause(2000);
         authorization.naviganeToProfile();
+        browser.pause(2000);
+        authorization.signout();
+        browser.pause(2000);
     })
 
-    xit('negative test with empty field for reset your password', () => {
+    it('negative test with empty field for reset your password', () => {
         authorization.naviganeToLoginPage();
         forgotPassword.navigateToResetPassword();
         forgotPassword.sendResetPassword();
@@ -63,7 +66,7 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
 
-    xit('negative test with random text for reset your password', () => {
+    it('negative test with random text for reset your password', () => {
         authorization.naviganeToLoginPage();
         forgotPassword.navigateToResetPassword();
         forgotPassword.inputResetWrong();
@@ -72,7 +75,7 @@ describe('Github registration', () => {
         browser.pause(1000);
     })
     
-    xit('positive test for reset your password', () => {
+    it('positive test for reset your password', () => {
         authorization.naviganeToLoginPage();
         forgotPassword.navigateToResetPassword();
         forgotPassword.setResetEmail();
@@ -82,7 +85,7 @@ describe('Github registration', () => {
         browser.pause(2000);
     })
 
-    xit('should be visible drop down menu after hovering', () => {
+    it('should be visible drop down menu after hovering', () => {
         browser.pause(2000);
         homepage.openMenuWhy();
         browser.pause(2000);
@@ -101,7 +104,7 @@ describe('Github registration', () => {
         browser.pause(1000);
         registration.goToFreePlans();
         browser.pause(1000);
-        registration.inputRegSet();
+        registration.setRandText();
         browser.pause(1000);
         registration.setEmail();
         browser.pause(1000);
@@ -114,12 +117,14 @@ describe('Github registration', () => {
         homepage.openMenuExplore();
         browser.pause(1000);
         topics.navigateToTopics();
+        browser.pause(2000);
         const textTopic = topics.labelTopics.getText();
+        browser.pause(2000);
         expect(topics.labelTopics).toHaveText('Topics');
         console.log ('Page has label Topics : ' + textTopic);
       })
 
-      xit('should search webdriverio information', () => {
+    it('should search webdriverio information', () => {
         browser.pause(1000);
         homepage.searchKeyWord();
         browser.pause(1000);
@@ -127,29 +132,32 @@ describe('Github registration', () => {
         browser.pause(1000);
         expect(browser).toHaveUrlContaining('webdriverio')
         
-      })
+    })
 
-      // как возвращаться назад с помощью екшенов
-      xit('get started with GitHub Enterprise', () => {
+    it('get started with GitHub Enterprise', () => {
         registration.startEnterprise();
         browser.pause(1000);
-        let handlePlan = browser.getWindowHandles();
-        registration.enterpriseCloud.click();
-        registration.inputRegSet();
+        registration.setRandText();
         browser.pause(1000);
-        registration.setEmail(); // Знайти в чому питання, не вписує імейл
-        browser.pause(3000);
+        registration.setEmail(); 
+        browser.pause(1000);
         registration.passwordInput.setValue('Nz111111');
         browser.pause(1000);
-        browser.switchToParentFrame();
         browser.pause(1000);
-        
-      })
-      it('should print the Carrers list', () => {
+        browser.back();
+
+        browser.pause(3000);
+        registration.startEnterpriseServer();
+        browser.pause(3000);
+
+    })
+
+
+    it('should print the Carrers list', () => {
         browser.pause(1000);
         homepage.listCareers();
         let itemsCareers = homepage.listOpenPositionsCareers.getText();
         console.log('Careers list : ' + itemsCareers);        
-      })
+    })
 
 })

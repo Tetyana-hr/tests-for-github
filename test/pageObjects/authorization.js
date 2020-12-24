@@ -6,6 +6,7 @@ class Authorization{
     get avatarMenu() {return $('[aria-label="View profile and more"] [class="dropdown-caret"]')}
     get profileItem() {return $('a.dropdown-item[href="/gito-tito"]');}
     get nickName() {return $('[itemprop="additionalName"]');}
+    get signout() {return $('class="dropdown-item dropdown-signout"');}
  
 
     naviganeToLoginPage(){
@@ -25,6 +26,11 @@ class Authorization{
         this.nickName.getText();
         expect(this.nickName).toHaveText('gito-tito');
         
+    }
+
+    logout(){
+        this.avatarMenu.click();
+        this.signout.click();
     }
 
 }
