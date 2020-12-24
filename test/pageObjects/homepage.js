@@ -1,5 +1,6 @@
 class Home {
     get itemWhy() {return $('//summary[contains(text(),"Why GitHub?")]');}
+    get itemTeam() {return $('[class="d-lg-flex list-style-none"] [href="/team"]');}
     get itemExplore() {return $('//summary[contains(text(),"Explore")]');}
     get itemPricing() {return $('//summary[contains(text(),"Pricing")]');}
     get menuWhy() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]');}
@@ -7,11 +8,15 @@ class Home {
     get menuPricing() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]');}
     get inputSearch() {return $('input[name="q"]');}
     get searchAllGithub() {return $('[class="js-jump-to-badge-search-text-global"]');}
-    get linkTtpeScript() {return $('');}
+    get linkTypeScript() {return $('');}
 
     openMenuWhy(){
         this.itemWhy.moveTo(); 
         console.log('IS VISIBLE Why GitHub MENU ? ' + this.menuWhy.isDisplayedInViewport());  
+    }
+
+    moveMenuTeam(){
+        this.itemTeam.moveTo(); 
     }
    
     openMenuExplore(){

@@ -81,15 +81,18 @@ describe('Github registration', () => {
         forgotPassword.isVisibleMessageCheckEmail();
         browser.pause(2000);
     })
-// Пересмотреть
-    xit('should be visible drop down menu after hovering', () => {
+
+    it('should be visible drop down menu after hovering', () => {
         browser.pause(2000);
         homepage.openMenuWhy();
         browser.pause(2000);
+        homepage.moveMenuTeam();
         homepage.openMenuExplore();
         browser.pause(2000);
+        homepage.moveMenuTeam();
         homepage.openMenuPricing();
         browser.pause(1000);
+        homepage.moveMenuTeam();
     })
 
     xit('join for free', () => {
@@ -117,7 +120,7 @@ describe('Github registration', () => {
       })
 
       //Не дописано
-      it('should search webdriverio information', () => {
+      xit('should search webdriverio information', () => {
         browser.pause(1000);
         homepage.searchKeyWord();
         browser.pause(1000);
