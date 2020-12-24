@@ -9,7 +9,10 @@ class Registration{
 
     get itemPlans() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"] [href="/pricing"]');}
     get freeButton() {return $('[href="/join?plan=free&ref_cta=Join%2520for%2520free&ref_loc=topcarousel&ref_page=%2Fpricing&source=pricing-card-free"]');}
-
+    
+    get itemEnterprise() {return $('[class="d-lg-flex list-style-none"] [href="/enterprise"]');}
+    get freeEnterprise() {return $('[href="/organizations/enterprise_plan?ref_cta=Start+a+free+trial&ref_loc=hero&ref_page=%2Fenterprise"]');}
+    get enterpriseCloud() {return $('//*[contains(text(),"Enterprise Cloud") and @class="h1 "]')}
 
     naviganeToRegPage(){
       this.singUp.click();
@@ -44,6 +47,13 @@ class Registration{
       goToFreePlans(){
         this.itemPlans.click();
         this.freeButton.click();
-    }
+      }
+
+      startEnterprise(){
+        this.itemEnterprise.click();
+        this.freeEnterprise.click();
+        
+      }
+
 }
 module.exports = new Registration();

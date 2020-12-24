@@ -82,7 +82,7 @@ describe('Github registration', () => {
         browser.pause(2000);
     })
 
-    it('should be visible drop down menu after hovering', () => {
+    xit('should be visible drop down menu after hovering', () => {
         browser.pause(2000);
         homepage.openMenuWhy();
         browser.pause(2000);
@@ -119,10 +119,37 @@ describe('Github registration', () => {
         console.log ('Page has label Topics : ' + textTopic);
       })
 
-      //Не дописано
       xit('should search webdriverio information', () => {
         browser.pause(1000);
         homepage.searchKeyWord();
         browser.pause(1000);
+        homepage.searchResult();
+        browser.pause(1000);
+        expect(browser).toHaveUrlContaining('webdriverio')
+        
       })
+
+      // как возвращаться назад с помощью екшенов
+      xit('get started with GitHub Enterprise', () => {
+        registration.startEnterprise();
+        browser.pause(1000);
+        let handlePlan = browser.getWindowHandles();
+        registration.enterpriseCloud.click();
+        registration.inputRegSet();
+        browser.pause(1000);
+        registration.setEmail(); // Знайти в чому питання, не вписує імейл
+        browser.pause(3000);
+        registration.passwordInput.setValue('Nz111111');
+        browser.pause(1000);
+        browser.switchToParentFrame();
+        browser.pause(1000);
+        
+      })
+      it('should print the Carrers list', () => {
+        browser.pause(1000);
+        homepage.listCareers();
+        let itemsCareers = homepage.listOpenPositionsCareers.getText();
+        console.log('Careers list : ' + itemsCareers);        
+      })
+
 })

@@ -8,7 +8,11 @@ class Home {
     get menuPricing() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]');}
     get inputSearch() {return $('input[name="q"]');}
     get searchAllGithub() {return $('[class="js-jump-to-badge-search-text-global"]');}
-    get linkTypeScript() {return $('');}
+    get itemTypeScript() {return $('[class="filter-list small"]  > :nth-child(2) [class="filter-item"]');}
+    get searchResults() {return $('[class="repo-list"] > :nth-child(1) [class="v-align-middle"]');}
+    get linkCareers() {return $('[href="/about/careers"]');}
+    get openPositionsCareers() {return $('[href="#positions"]');}
+    get listOpenPositionsCareers() {return $('[class="pb-md-6"]');}
 
     openMenuWhy(){
         this.itemWhy.moveTo(); 
@@ -32,6 +36,16 @@ class Home {
     searchKeyWord(){
         this.inputSearch.setValue('webdriverio');
         this.searchAllGithub.click();
+    }
+
+    searchResult(){
+        this.itemTypeScript.click();
+        this.searchResults.click();
+    }
+
+    listCareers() {
+        this.linkCareers.click();
+        this.openPositionsCareers.click();        
     }
 
 }
