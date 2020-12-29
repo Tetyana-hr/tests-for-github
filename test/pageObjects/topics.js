@@ -6,7 +6,7 @@ class Topics {
     checkLabelTopics(){
         const textTopics = this.labelTopics.getText();
         expect(this.labelTopics).toHaveText('Topics');
-        // console.log ('Page has label Topics : ' + textTopics);
+        console.log ('Page has label Topics : ' + textTopics);
         
     }
 

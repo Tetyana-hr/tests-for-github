@@ -64,7 +64,7 @@ itemPlansClick(){
   this.itemPlans.click();
 }
 
-itemExploreGithub(){
+itemExploreGithubClick(){
   this.itemExploreGithub.click();
 }
 

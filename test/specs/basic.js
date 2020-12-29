@@ -9,7 +9,7 @@ const {registration,
     pricing,
     explore
 } =  require('../pageObjects');
-const explore = require('../pageObjects/explore');
+
 
 describe('Github registration', () => {
     beforeEach(function () {
@@ -109,11 +109,14 @@ describe('Github registration', () => {
     })
 
     it('should open topics and finde label Topics', () => {
+        
         header.openMenuExplore();
-        header.itemExploreGithub();
+        header.itemExploreGithubClick();
         explore.goToTopicsTab();
         topics.checkLabelTopics();        
     })
+
+    //will be rewritte
 
     xit('should search webdriverio information', () => {
 
