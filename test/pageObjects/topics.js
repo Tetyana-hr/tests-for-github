@@ -1,13 +1,16 @@
 class Topics {
-    get itemExploreGithub() {return $('[href="/explore"]');}
-    get tabTopics() {return $('[data-selected-links="topics_path /topics/ /topics"]');}
+    
+    
     get labelTopics() {return $('h1[class="h0-mktg"]');}
 
-    navigateToTopics(){
-        this.itemExploreGithub.click();
-        this.tabTopics.click();
-      
+    checkLabelTopics(){
+        const textTopics = this.labelTopics.getText();
+        expect(this.labelTopics).toHaveText('Topics');
+        // console.log ('Page has label Topics : ' + textTopics);
+        
     }
+
+    
 
 }
 module.exports = new Topics();
