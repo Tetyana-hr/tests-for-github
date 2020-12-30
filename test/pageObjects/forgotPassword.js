@@ -7,28 +7,26 @@ class ForgotPassword{
     get warningMessage() {return $('[class="container-lg px-2"]');}
     get messageCheckEmail() {return $('[class="mt-0"]');}
 
+/**
+ * @param fake {string: {email}} for custom email
+ * @param fake {any} for fake email
+ * @param fake {undefined || null} for default email
+ * @return {Promise<void>}
+ */
 
+    setResetEmail(fake){       
 
-    setResetEmail(email = 'kecowex120@nowdigit.com'){
+        let email = 'kecowex120@nowdigit.com';
+        if (fake && typeof fake === 'string' && ~fake.indexOf('@')) {
+            email = fake;
+            fake = false;
+        }
+        if (fake) email = faker.email
         this.emailResetPassword.setValue(email);
     }
 
-    sendResetPassword(){
+    sendButtonClick(){
         this.sendButton.click();        
-    }
-
-    setWrongEmail() {
-        this.emailResetPassword.setValue(faker.email);  
-    }
-
-    isVisibleMessageCheckEmail(){
-       let isVisibleCheckMes = this.messageCheckEmail.isDisplayedInViewport();
-       console.log("IS VISIBLE CHECK EMAIL MESSAGE? " + isVisibleCheckMes);
-    }
-
-    isVisibleWarning(){
-        let isVisibleWarningMes = this.warningMessage.isDisplayedInViewport();
-        console.log("IS VISIBLE WARNING MESSAGE? " + isVisibleWarningMes);
     }
 }
 module.exports = new ForgotPassword();

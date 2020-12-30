@@ -38,7 +38,7 @@ class Header {
     this.userMenu.click();
   }
 
-  itemProfilSelected(){
+  goToYourProfile(){
     this.itemProfile.click();
   }
 
@@ -47,23 +47,8 @@ class Header {
     this.signout.click();
 }
 
-openMenuWhy(){
-  this.itemWhy.moveTo(); 
-  console.log('IS VISIBLE Why GitHub MENU ? ' + this.menuWhy.isDisplayedInViewport());  
-}
-
 moveMenuTeam(){
   this.itemTeam.moveTo(); 
-}
-
-openMenuExplore(){
-  this.itemExplore.moveTo();
-  console.log('IS VISIBLE Explore MENU ? ' + this.menuExplore.isDisplayedInViewport());  
-}
-
-openMenuPricing(){
-  this.itemPricing.moveTo(); 
-  console.log('IS VISIBLE PRICING MENU ? ' + this.menuPricing.isDisplayedInViewport());  
 }
 
 itemPlansClick(){

@@ -6,10 +6,5 @@ class Careers{
         this.openPositionsCareers.click(); 
     }
 
-    listCareers(){
-        let itemsCareers = this.listOpenPositionsCareers.getText();
-        console.log('Careers list : ' + itemsCareers);
-    }
-
 }
 module.exports = new Careers();
