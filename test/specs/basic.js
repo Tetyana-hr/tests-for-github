@@ -7,8 +7,13 @@ const {registration,
     header,
     login,
     pricing,
-    explore
+    explore,
+    search,
+    footer,
+    careers,
+    enterprise
 } =  require('../pageObjects');
+
 
 
 describe('Github registration', () => {
@@ -37,7 +42,7 @@ describe('Github registration', () => {
     xit('should sing up with main form', () => {
         homepage.setEmailMain();
         browser.pause(1000);
-        homepage.signUpFoGithub();
+        homepage.signUpForGithub();
         const urlRegPageMain = browser.getUrl();
         expect(browser).toHaveUrl('https://github.com/join')
         console.log ('MAIN REGISTRATION PAGE HAS URL : ' + urlRegPageMain);
@@ -108,7 +113,7 @@ describe('Github registration', () => {
         
     })
 
-    it('should open topics and finde label Topics', () => {
+    xit('should open topics and finde label Topics', () => {
         
         header.openMenuExplore();
         header.itemExploreGithubClick();
@@ -116,45 +121,42 @@ describe('Github registration', () => {
         topics.checkLabelTopics();        
     })
 
-    //will be rewritte
+    
 
     xit('should search webdriverio information', () => {
 
-        homepage.searchKeyWord();
-
-        homepage.searchResult();
-
+        header.searchKeyWord();
+        search.searchResult();
         expect(browser).toHaveUrlContaining('webdriverio')
         
     })
 
     xit('get started with GitHub Enterprise', () => {
-        registration.startEnterprise();
-
+        header.itemEnterpriseClick();
+        enterprise.startFreeTrialClick();
+        browser.pause(1000);
+        enterprise.planEnterpriseCloud();
+        browser.pause(1000);
         registration.setUserName();
-
         registration.setEmail(); 
-
         registration.setPassword();
-
 
         browser.back();
 
-        browser.pause(3000);
-        registration.startEnterpriseServer();
-        browser.pause(3000);
-
+        browser.pause(1000);
+        enterprise.planEnterpriseServer();
         browser.isElementSelected('#questions_no');
-        browser.pause(3000);
-
+        browser.pause(1000);
     })
 
 
     xit('should print the Carrers list', () => {
-
-        homepage.listCareers();
-        let itemsCareers = homepage.listOpenPositionsCareers.getText();
-        console.log('Careers list : ' + itemsCareers);        
+        
+        footer.linkCareersClick();
+        browser.pause(1000);
+        careers.openPositionsClick();
+        browser.pause(1000);
+        careers.listCareers();
     })
 
 })

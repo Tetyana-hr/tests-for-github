@@ -9,8 +9,8 @@ class ForgotPassword{
 
 
 
-    setResetEmail(){
-        this.emailResetPassword.setValue('kecowex120@nowdigit.com');
+    setResetEmail(email = 'kecowex120@nowdigit.com'){
+        this.emailResetPassword.setValue(email);
     }
 
     sendResetPassword(){

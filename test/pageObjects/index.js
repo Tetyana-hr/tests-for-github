@@ -7,6 +7,10 @@ const header = require('./header.fragment.js');
 const login = require('./login.js');
 const pricing = require('./pricing.js');
 const explore = require('./explore.js');
+const search = require('./search.js');
+const footer = require('./footer.fragment.js');
+const careers = require('./careers.js');
+const enterprise = require('./enterprise.js');
 
 module.exports = {
     registration,
@@ -17,5 +21,9 @@ module.exports = {
     login,
     mainUserPage,
     pricing,
-    explore
+    explore,
+    search,
+    footer,
+    careers,
+    enterprise
 }

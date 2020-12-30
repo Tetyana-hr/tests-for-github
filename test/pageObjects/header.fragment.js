@@ -19,6 +19,12 @@ class Header {
     get menuPricing() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]');}
     get itemPlans() {return $('[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"] [href="/pricing"]');}
     
+    get inputSearch() {return $('input[name="q"]');}
+    get searchAllGithub() {return $('[class="js-jump-to-badge-search-text-global"]');}
+   
+    get itemEnterprise() {return $('[class="d-lg-flex list-style-none"] [href="/enterprise"]');}
+
+ 
  
   signUp(){
     this.signUpButton.click();
@@ -66,6 +72,15 @@ itemPlansClick(){
 
 itemExploreGithubClick(){
   this.itemExploreGithub.click();
+}
+
+searchKeyWord(){
+  this.inputSearch.setValue('webdriverio');
+  this.searchAllGithub.click();
+}
+
+itemEnterpriseClick(){
+  this.itemEnterprise.click();
 }
 
 }
