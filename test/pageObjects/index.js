@@ -1,5 +1,5 @@
 const registration = require('./registration.js');
-const mainUserPage = require('./mainUserPage.js');
+const profile = require('./profile.js');
 const forgotPassword = require('./forgotPassword.js');
 const homepage = require('./homepage.js');
 const topics = require('./topics.js');
@@ -19,7 +19,7 @@ module.exports = {
     topics,
     header,
     login,
-    mainUserPage,
+    profile,
     pricing,
     explore,
     search,

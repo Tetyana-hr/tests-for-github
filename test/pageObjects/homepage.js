@@ -3,7 +3,7 @@ const faker = fake();
 
 class Home {
     get emailInputMain() {return $('#user_email');}
-    get singUpButon() {return $('[class="btn-mktg-fluid btn-green-mktg-fluid width-full width-sm-auto"]');}
+    get singUpButton() {return $('[class="btn-mktg-fluid btn-green-mktg-fluid width-full width-sm-auto"]');}
 
 
     setEmailMain() {
