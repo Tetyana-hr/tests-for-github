@@ -132,33 +132,35 @@ describe('Github registration', () => {
         header.moveMenuTeam();
     })
 
-    xit('registration via join for free', () => { 
-        browser.pause(1000);       
+    it('registration via join for free', () => { 
+        header.moveMenuTeam();
+        browser.pause(2000);       
         header.itemPricing.moveTo();   
-        browser.pause(1000);      
+        browser.pause(2000);      
         header.itemPlansClick();
-        browser.pause(1000);
+        browser.pause(2000);
         pricing.joinForFreeButtonClick();
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setUserName();
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setEmail();
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setPassword();
+        browser.pause(2000);
         
     })
 
-    xit('should open topics and finde label Topics', () => {
-
-        browser.pause(1000);
+    it('should open topics and finde label Topics', () => {
+        header.moveMenuTeam();
+        browser.pause(2000);
         header.itemExplore.moveTo(); 
-        browser.pause(1000);  
-        header.itemExploreGithub.waitForClickable();
+        browser.pause(3000);  
         header.itemExploreGithubClick();        
-        browser.pause(1000);
+        browser.pause(3000);
         explore.goToTopicsTab();
-        browser.pause(1000);
+        browser.pause(3000);
         expect(topics.labelTopics).toHaveText('Topics'); 
+        browser.pause(1000);
     })
 
     it('should search webdriverio information', () => {
@@ -173,15 +175,15 @@ describe('Github registration', () => {
 
     it('get started with GitHub Enterprise', () => {
         header.itemEnterpriseClick();
-        browser.pause(1000);
+        browser.pause(2000);
         enterprise.startFreeTrialClick();
-        browser.pause(1000);
+        browser.pause(2000);
         enterprise.planEnterpriseCloud();
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setUserName();
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setEmail(); 
-        browser.pause(1000);
+        browser.pause(2000);
         registration.setPassword();
 
         browser.back();
