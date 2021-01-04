@@ -3,6 +3,7 @@ class Careers{
     get listOpenPositionsCareers() {return $('[class="pb-md-6"]');}
 
     openPositionsClick(){
+        this.openPositionsCareers.click();
         this.openPositionsCareers.click(); 
     }
 

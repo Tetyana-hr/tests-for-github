@@ -4,6 +4,7 @@ class Pricing{
 
 
     joinForFreeButtonClick(){
+        this.freeButton.waitForClickable();
         this.freeButton.click();
       }
 }

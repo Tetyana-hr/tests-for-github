@@ -14,14 +14,17 @@ class Enterprise{
     get phoneEnterpriseServer() {return $('#contact_request_phone');}
   
     startFreeTrialClick(){
+        this.startFreeTrial.waitForClickable();
         this.startFreeTrial.click();
     }
 
-    planEnterpriseCloud(){    
+    planEnterpriseCloud(){  
+        this.enterpriseCloud.waitForClickable();  
         this.enterpriseCloud.click();
     }
 
     planEnterpriseServer(){
+        this.enterpriseServer.waitForClickable();
         this.enterpriseServer.click();
         this.nameEnterpriseServer.setValue(faker.name);
         this.companyEnterpriseServer.setValue(faker.name);

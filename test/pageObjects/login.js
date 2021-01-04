@@ -7,7 +7,9 @@ class Login{
 
 
     forgotPasswordLinkClick(){
-      this.forgotPasswordLink.click();
+        this.loginButton.waitForClickable();
+        this.forgotPasswordLink.waitForDisplayed();
+        this.forgotPasswordLink.click();
     }
 /**
  * @param {object} credentions 
@@ -19,7 +21,18 @@ class Login{
         credentions = credentions || {};
         credentions.userName = credentions.userName || 'kecowex120@nowdigit.com';
         credentions.userPassword = credentions.userPassword || 'Nz111111' ;
-        this.loginName.setValue(credentions.userName);
+ 
+        this.loginButton.waitForClickable();
+        browser.waitUntil(() => {
+            this.loginName.setValue(credentions.userName);
+            const uName = this.loginName.getValue();
+            return uName === credentions.userName;
+        },
+        {
+            timeout: 1000
+        }
+        )
+        
         this.loginPassword.setValue(credentions.userPassword);
         this.loginButton.click();
     }

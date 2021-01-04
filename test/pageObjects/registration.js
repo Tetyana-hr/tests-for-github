@@ -8,7 +8,17 @@ class Registration{
     get textVerifyYourAccount() {return $('[class="f4 mb-3"]')}
  
     setUserName() {
-      this.nameInput.setValue(faker.name);
+      browser.waitUntil(() =>
+        {
+          this.nameInput.setValue(faker.name);
+          const name = this.nameInput.getValue();
+          return name === faker.name;
+
+        },
+        {
+          timeout: 2000
+        }
+      )  
     }
  
     setEmail() {
@@ -17,6 +27,7 @@ class Registration{
 
     setPassword(password = 'Nz111111') {
       this.passwordInput.setValue(password);
+      
     }
  
 }

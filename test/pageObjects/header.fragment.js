@@ -31,6 +31,7 @@ class Header {
   }
 
   signIn(){
+    this.signInButton.waitForClickable();
     this.signInButton.click();
   }
 
@@ -39,11 +40,13 @@ class Header {
   }
 
   goToYourProfile(){
+    this.itemProfile.waitForClickable();
     this.itemProfile.click();
   }
 
   logout(){
     this.userMenu.click();
+    this.signout.waitForClickable();
     this.signout.click();
 }
 
@@ -52,19 +55,32 @@ moveMenuTeam(){
 }
 
 itemPlansClick(){
+  this.itemPlans.waitForClickable();
   this.itemPlans.click();
 }
 
 itemExploreGithubClick(){
+  this.itemExploreGithub.waitForClickable();
   this.itemExploreGithub.click();
 }
 
-searchKeyWord(){
-  this.inputSearch.setValue('webdriverio');
+searchKeyWord(value = 'webdriverio'){
+
+  browser.waitUntil(() => {
+    this.inputSearch.setValue(value);
+    const _value = this.inputSearch.getValue();
+    return _value === value;
+  },
+  {
+    timeout: 1000
+  }
+  )
+
   this.searchAllGithub.click();
 }
 
 itemEnterpriseClick(){
+  this.itemEnterprise.waitForClickable();
   this.itemEnterprise.click();
 }
 

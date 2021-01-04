@@ -2,14 +2,24 @@ const explore = require("./explore")
 
 class Search{
  
-    get itemTypeScript() {return $('[class="filter-list small"]  > :nth-child(2) [class="filter-item"]');}
-    get searchResults() {return $('[class="repo-list"] > :nth-child(1) [class="v-align-middle"]');}
-
+    get itemTypeScript() {return $('a[href*="TypeScript"]');}
+    get searchResults() {return $('ul.repo-list a[href*="/webdriverio"]:first-child');}
     
     searchResult(){
-        this.itemTypeScript.click();
-        this.searchResults.click();
-    }
-
+            browser.waitUntil(
+                () => this.itemTypeScript.isDisplayedInViewport(),
+                {timeout: 3000}
+            );
+            browser.waitUntil(
+                () => {
+                    this.itemTypeScript.click();
+                    const classValue = this.itemTypeScript.getAttribute('class');
+                    return classValue.includes('selected');
+                },
+                {timeout: 3000}
+            );
+            this.searchResults.waitForClickable({timeout: 1000});
+            this.searchResults.click();
+            }
 }
 module.exports = new Search();

@@ -22,10 +22,20 @@ class ForgotPassword{
             fake = false;
         }
         if (fake) email = faker.email
-        this.emailResetPassword.setValue(email);
+            browser.waitUntil(() => {
+            this.emailResetPassword.setValue(email);
+            const eName = this.emailResetPassword.getValue();
+            return eName === email;
+        },
+        {
+            timeout: 1000
+        }
+            )
+        
     }
 
     sendButtonClick(){
+        this.sendButton.waitForClickable();
         this.sendButton.click();        
     }
 }

@@ -13,7 +13,7 @@ const {registration,
     careers,
     enterprise
 } =  require('../pageObjects');
-
+const {waitDomReady, waitAjaxLoad} = require('../../lib/wait.js');
 
 
 describe('Github registration', () => {
@@ -24,185 +24,147 @@ describe('Github registration', () => {
         });
 
     it('should open registration page, verify url, visibling some text and user registration', () => {
-        header.signUpButton.waitForDisplayed();
+    
+
+        header.signUpButton.waitForClickable();
         header.signUp();
-        browser.pause(1000);
+        waitDomReady();
         const urlRegPage = browser.getUrl();
         expect(browser).toHaveUrl('https://github.com/join?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F&source=header-home')
         console.log ('REGISTRATION PAGE HAS URL : ' + urlRegPage);
-        browser.pause(1000);        
-        
         registration.setUserName();
-        browser.pause(1000);
         registration.setEmail();
-        browser.pause(1000);
         registration.setPassword();
-        browser.pause(1000);
-        expect(registration.textVerifyYourAccount.isDisplayed()).toBeTruthy(); 
+        expect(registration.textVerifyYourAccount.waitForDisplayed({ timeout: 1000 })).toBeTruthy();
+        
+        
+    
     })
 
     it('should sing up with main form', () => {
-        browser.pause(1000);
-        homepage.setEmailMain();
-        browser.pause(1000);
-        homepage.signUpForGithub();
-        browser.pause(1000);
-        const urlRegPageMain = browser.getUrl();
-        browser.pause(1000);
+        homepage.singUpButton.waitForClickable();
+        homepage.setEmailMain();        
+        homepage.signUpForGithub();   
+        waitDomReady();     
+        const urlRegPageMain = browser.getUrl();        
         expect(browser).toHaveUrl('https://github.com/join')
         console.log ('MAIN REGISTRATION PAGE HAS URL : ' + urlRegPageMain); 
-        browser.pause(1000);
-
-        registration.setUserName();
-        browser.pause(1000);
-        registration.setPassword();
-        browser.pause(1000);
-        
-        expect(registration.textVerifyYourAccount.isDisplayed()).toBeTruthy(); 
+        registration.setUserName();       
+        registration.setPassword();        
+        expect(registration.textVerifyYourAccount.waitForDisplayed({ timeout: 1000 })).toBeTruthy(); 
     })
 
     it('should authorization with right credential', () => {
-        header.signIn();       
-        browser.pause(1000);
+        header.signIn(); 
         login.login();
-        browser.pause(1000);
-        header.userMenuClick();
-        browser.pause(1000);        
-        header.goToYourProfile(); 
-        browser.pause(2000);       
+        waitDomReady();
+        header.userMenuClick();        
+        header.goToYourProfile();
+        waitDomReady();        
         expect(profile.nickName).toHaveText('gito-tito');  
           
     })
 
     it('negative test with empty field for reset your password', () => {
         header.signIn();
-        browser.pause(1000);
-        login.forgotPasswordLinkClick();
-        browser.pause(1000);
+        waitDomReady();        
+        login.forgotPasswordLinkClick();        
         forgotPassword.sendButtonClick();
-        browser.pause(1000);
+        waitDomReady();
         let isVisibleWarningMes = forgotPassword.warningMessage.isDisplayedInViewport();
         expect(isVisibleWarningMes).toBeTruthy();
     })
 
     it('negative test with random text for reset your password', () => {
         header.signIn();
-        browser.pause(1000);
+        waitDomReady();
         login.forgotPasswordLinkClick();
-        browser.pause(1000);
         forgotPassword.setResetEmail({fake:true});
-        browser.pause(1000);
         forgotPassword.sendButtonClick();
-        browser.pause(1000);
+        waitDomReady();
         let isVisibleWarningMes = forgotPassword.warningMessage.isDisplayedInViewport();
         expect(isVisibleWarningMes).toBeTruthy();
     })
     
     it('positive test for reset your password', () => {
         header.signIn();
-        browser.pause(1000);
+        waitDomReady();
         login.forgotPasswordLinkClick();
-        browser.pause(1000);
+
         forgotPassword.setResetEmail();
-        browser.pause(1000);
         forgotPassword.sendButtonClick();
+        waitDomReady();
         let isVisibleCheckMes = forgotPassword.messageCheckEmail.isDisplayedInViewport();
         expect(isVisibleCheckMes).toBeTruthy();
         
     })
 
     it('should be visible drop down menu after hovering', () => {
-        browser.pause(1000);
         header.itemWhy.moveTo();
-        browser.pause(1000);
-        expect(header.menuWhy.isDisplayedInViewport()).toBeTruthy();
-        browser.pause(1000);
+        expect(header.menuWhy.waitForDisplayed({ timeout: 2000 })).toBeTruthy();
         header.moveMenuTeam();
-        browser.pause(1000);
-        header.itemExplore.moveTo();  
-        browser.pause(1000);       
-        expect(header.menuExplore.isDisplayedInViewport()).toBeTruthy();  
-        browser.pause(1000);     
+        header.itemExplore.moveTo();         
+        expect(header.menuExplore.waitForDisplayed({ timeout: 2000 })).toBeTruthy();       
         header.moveMenuTeam();
-        browser.pause(1000);
-        header.itemPricing.moveTo();   
-        browser.pause(1000);      
-        expect(header.menuPricing.isDisplayedInViewport()).toBeTruthy();  
-        browser.pause(1000);     
+        header.itemPricing.moveTo();         
+        expect(header.menuPricing.waitForDisplayed({ timeout: 2000 })).toBeTruthy();       
         header.moveMenuTeam();
     })
 
     it('registration via join for free', () => { 
-        header.moveMenuTeam();
-        browser.pause(2000);       
-        header.itemPricing.moveTo();   
-        browser.pause(2000);      
+        header.moveMenuTeam();       
+        header.itemPricing.moveTo();         
         header.itemPlansClick();
-        browser.pause(2000);
         pricing.joinForFreeButtonClick();
-        browser.pause(2000);
         registration.setUserName();
-        browser.pause(2000);
         registration.setEmail();
-        browser.pause(2000);
         registration.setPassword();
-        browser.pause(2000);
+        browser.pause(500);
+        const autocheck = registration.passwordInput.getAttribute('class');
+        expect(autocheck.includes('is-autocheck-successful')).toBeTruthy();
         
     })
 
     it('should open topics and finde label Topics', () => {
         header.moveMenuTeam();
-        browser.pause(2000);
-        header.itemExplore.moveTo(); 
-        browser.pause(3000);  
+        header.itemExplore.moveTo();   
         header.itemExploreGithubClick();        
-        browser.pause(3000);
         explore.goToTopicsTab();
-        browser.pause(3000);
+        waitDomReady();
         expect(topics.labelTopics).toHaveText('Topics'); 
-        browser.pause(1000);
     })
 
     it('should search webdriverio information', () => {
 
-        header.searchKeyWord();
-        browser.pause(1000);
-        search.searchResult();
-        browser.pause(1000);
-        expect(browser).toHaveUrlContaining('webdriverio')
+        header.searchKeyWord(); 
+        waitDomReady();       
+        search.searchResult();  
+        waitDomReady();      
+        expect(browser).toHaveUrlContaining('/webdriverio')
         
     })
 
     it('get started with GitHub Enterprise', () => {
-        header.itemEnterpriseClick();
-        browser.pause(2000);
-        enterprise.startFreeTrialClick();
-        browser.pause(2000);
-        enterprise.planEnterpriseCloud();
-        browser.pause(2000);
-        registration.setUserName();
-        browser.pause(2000);
-        registration.setEmail(); 
-        browser.pause(2000);
+        header.itemEnterpriseClick();        
+        enterprise.startFreeTrialClick();        
+        enterprise.planEnterpriseCloud();        
+        registration.setUserName();        
+        registration.setEmail();         
         registration.setPassword();
 
         browser.back();
 
-        browser.pause(1000);
         enterprise.planEnterpriseServer();
-        browser.pause(1000);
-        browser.isElementSelected('#questions_no');
-        browser.pause(1000);
+        expect(browser.isElementSelected('#questions_no')).toBeTruthy();
     })
 
 
     it('should print the Carrers list', () => {
         
         footer.linkCareersClick();
-        browser.pause(1000);
         careers.openPositionsClick();
-        browser.pause(1000);
-        expect(careers.listOpenPositionsCareers.isDisplayed()).toBeTruthy();  
+        
+        expect(careers.listOpenPositionsCareers.waitForDisplayed()).toBeTruthy();  
     })
 
 })
